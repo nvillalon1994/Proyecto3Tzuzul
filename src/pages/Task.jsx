@@ -75,7 +75,7 @@ function Task() {
       
       <form on onSubmit={addComentario}>
         <input type="text" placeholder='Comentario' name='comment' />
-        <button>Agregar Comentario</button>
+        <button>Agregar Comentarios</button>
       </form>
     </div>
   )
