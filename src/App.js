@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Navbar from './components/Navbar';
+import { validate } from './features/user/userSlice';
+// import DragAndDrop from './pages/DragAndDrop';
+// import DragAndDrop2 from './pages/DragAndDrop2';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import MyTeams from './pages/MyTeams';
+import Task from './pages/Task';
+import Team from './pages/Team';
+import Users from './pages/Users';
+// import Team from './pages/Team';
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(validate())
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    
+      
+      <BrowserRouter>
+        <Navbar/>
+        <div className='max-w-screen-xl mx-auto'>
+        <Routes>
+          
+          <Route path="/" element={<Home/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/my_teams" element={<MyTeams/>}/>
+          <Route path="/my_teams/:idTeam" element={<Team/>}/>
+          <Route path="/users" element={<Users/>}/>
+          <Route path="/tasks/:idTask" element={<Task/>}/>
+          
+          
+        </Routes>
+        </div>
+      </BrowserRouter>
+
+    
   );
 }
 
